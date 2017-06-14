@@ -60,18 +60,80 @@ namespace ZooApp.Controllers
         }
 
         // POST: api/Clasificacion
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public IHttpActionResult Post([FromBody]Clasificacion nuevaClasificacion)
         {
+            RespuestaAPI<Clasificacion> respuesta = new RespuestaAPI<Clasificacion>();
+            respuesta.error = "";
+            int numFilasAfectadas = 0;
+
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    numFilasAfectadas = Db.InsertaClasificacion(nuevaClasificacion);
+                }
+                respuesta.totalElementos = numFilasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Se ha producido un error al insertar una nueva Clasificacion";
+            }
+            return Ok(respuesta);
         }
 
         // PUT: api/Clasificacion/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]Clasificacion clasificacion)
         {
-        }
+            RespuestaAPI<Clasificacion> respuesta = new RespuestaAPI<Clasificacion>();
+            respuesta.error = "";
+            int numFilasAfectadas = 0;
 
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    numFilasAfectadas = Db.ActualizaClasificacion(id, clasificacion);
+                }
+                respuesta.totalElementos = numFilasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception e)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Se ha producido un error al actualizar una Clasificacion.";
+            }
+            return Ok(respuesta);
+        }
+        [HttpDelete]
         // DELETE: api/Clasificacion/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            RespuestaAPI<Clasificacion> respuesta = new RespuestaAPI<Clasificacion>();
+            respuesta.error = "";
+            int numFilasAfectadas = 0;
+
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    numFilasAfectadas = Db.BorraClasificacion(id);
+                }
+                respuesta.totalElementos = numFilasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Se ha producido un error al borrar una Clasificacion";
+            }
+            return Ok(respuesta);
         }
     }
 }

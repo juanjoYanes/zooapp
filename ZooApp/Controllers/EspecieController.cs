@@ -64,18 +64,81 @@ namespace ZooApp.Controllers
         }
 
         // POST: api/Especie
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public IHttpActionResult Post([FromBody]Especie nuevaEspecie)
         {
+            RespuestaAPI<Especie> respuesta = new RespuestaAPI<Especie>();
+            respuesta.error = "";
+            int numFilasAfectadas = 0;
+
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    numFilasAfectadas = Db.InsertaEspecie(nuevaEspecie);
+                }
+                respuesta.totalElementos = numFilasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Se ha producido un error al insertar una 'Especie' nueva";
+            }
+            return Ok(respuesta);
         }
 
         // PUT: api/Especie/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult Put(long id, [FromBody]Especie especie)
         {
+            RespuestaAPI<Especie> respuesta = new RespuestaAPI<Especie>();
+            respuesta.error = "";
+            int numFilasAfectadas = 0;
+
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    numFilasAfectadas = Db.ActualizaEspecie(id, especie);
+                }
+                respuesta.totalElementos = numFilasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Se ha producido un error al actualizar una 'Especie'";
+            }
+            return Ok(respuesta);
         }
 
         // DELETE: api/Especie/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Delete(long id)
         {
+            RespuestaAPI<Especie> respuesta = new RespuestaAPI<Especie>();
+            respuesta.error = "";
+            int numFilasAfectadas = 0;
+
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    numFilasAfectadas = Db.BorraEspecie(id);
+                }
+                respuesta.totalElementos = numFilasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Se ha producido un error al insertar una 'Especie' nueva";
+            }
+            return Ok(respuesta);
         }
     }
 }
