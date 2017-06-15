@@ -82,6 +82,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Views\js\clasificacion.js" />
+    <Content Include="Views\clasificaciones.html" />
+    <Content Include="Views\css\main.css" />
+    <Content Include="Views\especies.html" />
+    <Content Include="Views\js\especie.js" />
+    <Content Include="Views\js\tipoAnimal.js" />
+    <Content Include="Views\tiposAnimal.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -110,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

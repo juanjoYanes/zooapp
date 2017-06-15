@@ -172,7 +172,7 @@ namespace ZooApp
 
         public static int ActualizaEspecie(long id, Especie especie)
         {
-            string nombreProcedimiento = "dbo.INSERTA_ESPECIE";
+            string nombreProcedimiento = "dbo.ACTUALIZA_ESPECIE";
 
             SqlCommand cmd = new SqlCommand(nombreProcedimiento, conexion);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -191,7 +191,7 @@ namespace ZooApp
 
             SqlParameter parametroIdTipoAnimal = new SqlParameter();
             parametroIdTipoAnimal.ParameterName = "IdTipoAnimal";
-            parametroIdTipoAnimal.SqlDbType = SqlDbType.Int;
+            parametroIdTipoAnimal.SqlDbType = SqlDbType.BigInt;
             parametroIdTipoAnimal.SqlValue = especie.tipoAnimal.idTipoAnimal;
             cmd.Parameters.Add(parametroIdTipoAnimal);
 
@@ -208,7 +208,7 @@ namespace ZooApp
             cmd.Parameters.Add(parametroNPatas);
 
             SqlParameter parametroEsMascota = new SqlParameter();
-            parametroEsMascota.ParameterName = "nPatas";
+            parametroEsMascota.ParameterName = "esMascota";
             parametroEsMascota.SqlDbType = SqlDbType.Bit;
             parametroEsMascota.SqlValue = especie.esMascota ? 1 : 0;
             cmd.Parameters.Add(parametroEsMascota);
@@ -220,9 +220,7 @@ namespace ZooApp
 
         public static int BorraEspecie(long id)
         {
-
-
-            string nombreProcedimiento = "dbo.BORRA_ESPECIE";
+            string nombreProcedimiento = "dbo.BORRAR_ESPECIE";
 
             SqlCommand cmd = new SqlCommand(nombreProcedimiento, conexion);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -337,7 +335,7 @@ namespace ZooApp
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter parametroIdTipoAnimal= new SqlParameter();
-            parametroIdTipoAnimal.ParameterName = "IdTipoAnimal";
+            parametroIdTipoAnimal.ParameterName = "idTipoAnimal";
             parametroIdTipoAnimal.SqlDbType = SqlDbType.BigInt;
             parametroIdTipoAnimal.SqlValue = id;
             cmd.Parameters.Add(parametroIdTipoAnimal);

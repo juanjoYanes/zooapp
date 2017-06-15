@@ -130,7 +130,7 @@ namespace ZooApp.Controllers
                 respuesta.totalElementos = numFilasAfectadas;
                 Db.Desconectar();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 respuesta.totalElementos = 0;
                 respuesta.error = "Se ha producido un error al borrar un Tipo de Animal";

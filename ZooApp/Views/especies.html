@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Especies</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <h1> Relación de especies </h1>
+    <div>
+        <div id="formularioEntrada">
+            <table>
+                <tr>
+                    <td>
+                        <label for="txtNombre">Nombre: </label>
+                    </td>
+                    <td>
+                        <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Número de patas: </label>
+                    </td>
+                    <td>
+                        <input type="text" id="txtNPatas" name="txtNPatas" placeholder="Número de patas" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>¿Es mascota?: </label>
+                    </td>
+                    <td>
+                        <select id="slctEsMascota" name="slctEsMascota">
+                            <option value="false">No</option>
+                            <option value="true">Sí</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Clasificacion: </label>
+                    </td>
+                    <td>
+                        <select id="slctClasificaciones" name="slctClasificaciones">
+                        </select>
+                        <!--<input type="text" id="txtClasificacion" name="txtClassifcacion" placeholder="Clasificacion" />-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Tipo de Animal: </label>
+                    </td>
+                    <td>
+                        <!--<select id="slctTtiposAnimal" name="slctTiposAnimal"></select>-->
+                        <input type="text" id="txtTipoAnimal" name="txtTipoAnimal" placeholder="Tipo de Animal" />
+                    </td>
+                </tr>
+            </table>
+            <button id="btnInsertarEspecie">Añadir</button>
+        </div>
+   
+    </div>
+    <div>
+        <div id="mainContent"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="./js/especie.js"></script>
+</body>
+</html>
