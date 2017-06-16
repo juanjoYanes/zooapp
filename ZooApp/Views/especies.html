@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Número de patas: </label>
+                        <label for="txtNPatas">Número de patas: </label>
                     </td>
                     <td>
                         <input type="text" id="txtNPatas" name="txtNPatas" placeholder="Número de patas" />
@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>¿Es mascota?: </label>
+                        <label for="slctEsMascota">¿Es mascota?: </label>
                     </td>
                     <td>
                         <select id="slctEsMascota" name="slctEsMascota">
@@ -39,30 +39,76 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Clasificacion: </label>
+                        <label for="slctClasificaciones">Clasificacion: </label>
                     </td>
                     <td>
-                        <select id="slctClasificaciones" name="slctClasificaciones">
-                        </select>
-                        <!--<input type="text" id="txtClasificacion" name="txtClassifcacion" placeholder="Clasificacion" />-->
-                    </td>
+                        <select id="slctClasificaciones" name="slctClasificaciones"></select>
+                   </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Tipo de Animal: </label>
+                        <label for="slctTiposAnimal">Tipo de Animal: </label>
                     </td>
                     <td>
-                        <!--<select id="slctTtiposAnimal" name="slctTiposAnimal"></select>-->
-                        <input type="text" id="txtTipoAnimal" name="txtTipoAnimal" placeholder="Tipo de Animal" />
-                    </td>
+                        <select id="slctTiposAnimal" name="slctTiposAnimal"></select>
+                   </td>
                 </tr>
             </table>
             <button id="btnInsertarEspecie">Añadir</button>
         </div>
-   
-    </div>
-    <div>
-        <div id="mainContent"></div>
+        <br />
+        <div>
+            <div id="mainContent"></div>
+        </div>
+        <hr />
+        <div id="formularioEdicion">
+            <h2>Valores a sustituir cuando se pulse 'Editar'</h2>
+            <table>
+                <tr>
+                    <td>
+                        <label for="txtNombreNuevo">Nombre: </label>
+                    </td>
+                    <td>
+                        <input type="text" id="txtNombreNuevo" name="txtNombreNuevo" placeholder="Nombre nuevo" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="txtNPatasNuevo">Número de patas: </label>
+                    </td>
+                    <td>
+                        <input type="text" id="txtNPatasNuevo" name="txtNPatasNuevo" placeholder="Número de patas nuevo" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="slctEsMascotaNuevo">¿Es mascota? (nuevo valor): </label>
+                    </td>
+                    <td>
+                        <select id="slctEsMascotaNuevo" name="slctEsMascotaNuevo">
+                            <option value="false">No</option>
+                            <option value="true">Sí</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="slctClasificacionesNuevo">Clasificacion (nuevo valor): </label>
+                    </td>
+                    <td>
+                        <select id="slctClasificacionesNuevo" name="slctClasificacionesNuevo"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="slctTiposAnimalNuevo">Tipo de Animal (nuevo valor): </label>
+                    </td>
+                    <td>
+                        <select id="slctTiposAnimalNuevo" name="slctTiposAnimalNuevo"></select>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="./js/especie.js"></script>

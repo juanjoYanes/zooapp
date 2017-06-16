@@ -103,7 +103,7 @@ namespace ZooApp.Controllers
                 respuesta.totalElementos = numFilasAfectadas;
                 Db.Desconectar();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 respuesta.totalElementos = 0;
                 respuesta.error = "Se ha producido un error al actualizar una Clasificacion.";

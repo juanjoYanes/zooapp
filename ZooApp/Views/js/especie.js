@@ -3,12 +3,12 @@
     var urlAPIClasificaciones = "http://localhost:63313/api/clasificacion";
     var urlAPITiposAnimal = "http://localhost:63313/api/tipoAnimal";
     
-    function cargaSelectorTiposAnimales() {
+    function cargaSelectorTiposAnimales(selectorTiposAnimal) {
         $.get(urlAPITiposAnimal, function (response, state) {
-
+            console.log('cargaSelectorTiposAnimales -> ', response);
             if (state == 'success') {
                 $.each(response.data, function (index, item) {
-                    $('#slctTiposAnimal').append(
+                    selectorTiposAnimal.append(
                         new Option(item.denominacion, item.idTipoAnimal));
                 });
             }
@@ -19,12 +19,13 @@
         });
     }
     
-    function cargaSelectorClasificaciones() {
+    function cargaSelectorClasificaciones(selectorClasificaciones) {
+        
         $.get(urlAPIClasificaciones, function (response, state) {
-
+            console.log('cargaSelectorClasificaciones -> ', response);
             if (state == 'success') {
                 $.each(response.data, function (index, item) {
-                    $('#slctClasificaciones').append(
+                    selectorClasificaciones.append(
                         new Option(item.denominacion, item.idClasificacion));
                 });
             }
@@ -85,7 +86,7 @@
             nPatas: $('#txtNPatas').val(),
             esMascota: $('#slctEsMascota').val(),
             clasificacion: { IdClasificacion: $('#slctClasificaciones').val() },
-            tipoAnimal: { IdTipoAnimal: $('#txtTiposAnimal').val() },
+            tipoAnimal: { IdTipoAnimal: $('#slctTiposAnimal').val() },
         };
         $.post(urlAPI, dataNuevaEspecie, function (response, state) {
             if (state == 'success') {
@@ -101,31 +102,30 @@
     
     $('#mainContent').on('click', '#btnEditar', function () {
 
-        //var idEspecie = $(this).attr('data-id');
-        //var nuevaEspecie = $('#txtNuevaEspecie').val();
+        var idEspecie = $(this).attr('data-id');
 
-        //var dataEspecieAModificar = {
-        //    IdEspecie: idEspecie,
-        //    nombre: $('#txtNombre').val(),
-        //    nPatas: $('#txtNPatas').val(),
-        //    esMascota: $('#txtEsMascota').val(),
-        //    clasificacion: { IdClasificacion: $('#txtClasificacion').value() },
-        //    tipoAnimal: { IdTipoAnimal: $('#txtTipoAnimal').value() },
-        //};
+        var dataEspecieAModificar = {
+            IdEspecie: idEspecie,
+            nombre: $('#txtNombreNuevo').val(),
+            nPatas: $('#txtNPatasNuevo').val(),
+            esMascota: $('#slctEsMascotaNuevo').val(),
+            clasificacion: { IdClasificacion: $('#slctClasificacionesNuevo').val() },
+            tipoAnimal: { IdTipoAnimal: $('#slctTiposAnimalNuevo').val() },
+        };
 
-        //$.ajax({
-        //    url: urlAPI + '/' + idEspecie,
-        //    type: "PUT",
-        //    dataType: 'json',
-        //    data: dataEspecieAModificar,
-        //    success: function (data) {
-        //        getEspecies();
-        //        console.log(data);
-        //    },
-        //    error: function (data) {
-        //        console.log(data);
-        //    }
-        //});
+        $.ajax({
+            url: urlAPI + '/' + idEspecie,
+            type: "PUT",
+            dataType: 'json',
+            data: dataEspecieAModificar,
+            success: function (data) {
+                getEspecies();
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
     });
 
     $('#mainContent').on('click', '#btnEliminar', function () {
@@ -144,7 +144,16 @@
         });
     });
 
-    //cargaSelectorTiposAnimales();
-    cargaSelectorClasificaciones();
     getEspecies();
+
+    $('#slctClasificacionesNuevo').html('');
+    $('#slctClasificaciones').html('');
+    $('#slctTiposAnimalNuevo').html('');
+    $('#slctTiposAnimal').html('');
+
+    cargaSelectorClasificaciones($('#slctClasificacionesNuevo'));
+    cargaSelectorClasificaciones($('#slctClasificaciones'));
+
+    cargaSelectorTiposAnimales($('#slctTiposAnimal'));
+    cargaSelectorTiposAnimales($('#slctTiposAnimalNuevo'));
 })
